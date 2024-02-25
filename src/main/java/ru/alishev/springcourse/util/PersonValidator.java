@@ -29,14 +29,7 @@ public class PersonValidator implements Validator {
     public void validate(Object o, Errors errors) {
         Person person = (Person) o;
 
-        if (personDAO.show(person.getEmail()).isPresent()) {
-            // поле, код ошибки, сообщение ошибки
-            errors.rejectValue("email", "", "This email is already in use");
-        }
-
-        // Проверяем, что у человека имя начинается с заглавной буквы
-        // Если имя не начинается с заглавной буквы - выдаем ошибку
-        if (!Character.isUpperCase(person.getName().codePointAt(0)))
-            errors.rejectValue("name", "", "Name should start with a capital letter");
+        if (personDAO.getPersonByFullName(person.getFullName()).isPresent())
+            errors.rejectValue("fullName", "", "Человек с таким ФИО уже существует");
     }
 }

@@ -8,13 +8,13 @@
 
 <div th:each="person : ${people}">
     <a th:href="@{/people/{id}(id=${person.getId()})}"
-       th:text="${person.getName() + ', ' + person.getAge()}">user</a>
+       th:text="${person.getFullName() + ', ' + person.getYearOfBitrth()}">user</a>
 </div>
 
 <br/>
 <hr/>
 
-<a href="/spring_mvc_app1_war_exploded/people/new">Create new person</a>
+<a href="/spring_mvc_app1_war_exploded/people/new">Добавить человека</a>
 
 </body>
 </html>
